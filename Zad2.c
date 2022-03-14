@@ -48,7 +48,7 @@ int main(void){
         }
     }
     printf("\n");
-    printf("Ime programera: %s\nPrezime programera: %s\noib programera: %llu\nPlaca programera: %.2f\nDatum rodenja programera:\ %2hu.%2hu.%4hu.\n"
+    printf("Ime programera: %s\nPrezime programera: %s\noib programera: %llu\nPlaca programera: %.2f\nDatum rodenja programera: %2hu.%2hu.%4hu.\n"
     , programeri[k].ime, programeri[k].prezime, programeri[k].oib, programeri[k].placa, programeri[k].datumRodjenja.dan, programeri[k].datumRodjenja.mjesec, 
     programeri[k].datumRodjenja.godina);
 
