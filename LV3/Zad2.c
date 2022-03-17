@@ -1,9 +1,9 @@
-/*Napisati C program koji omoguæuje unos podataka o programerima jedne IT tvrtke, kao što je ime,
-prezime, OIB, plaæa i datum roðenja, od ukupno 15 programera. Tražiti od korisnika unos broj n
-(1 ? ?? < 16), ponavljati sve dok unos ne odgovara traženom intervalu. Popuniti informacije o
-onoliko programera ovisno o broju n, pronaæi programera koji ima najbolju plaæu, te ispisati sve
+/*Napisati C program koji omoguÃ¦uje unos podataka o programerima jedne IT tvrtke, kao Å¡to je ime,
+prezime, OIB, plaÃ¦a i datum roÃ°enja, od ukupno 15 programera. TraÅ¾iti od korisnika unos broj n
+(1 ? ?? < 16), ponavljati sve dok unos ne odgovara traÅ¾enom intervalu. Popuniti informacije o
+onoliko programera ovisno o broju n, pronaÃ¦i programera koji ima najbolju plaÃ¦u, te ispisati sve
 informacije o tome programeru. S obzirom na navedene podatke o programeru, formirati
-strukturu koristeæi kljuènu rijeè typedef i pripaziti na ispis formata za datum kako bi bio u obliku
+strukturu koristeÃ¦i kljuÃ¨nu rijeÃ¨ typedef i pripaziti na ispis formata za datum kako bi bio u obliku
 DD.MM.GGGG.*/
 
 
@@ -14,13 +14,13 @@ struct datum {
     unsigned short mjesec;
     unsigned short godina;
 };
-struct itTvrtka {
+typedef struct itTvrtka {
     char ime[20];
     char prezime[20];
     unsigned long long oib;
     float placa;
     struct datum datumRodjenja;
-};
+}IT_TVRTKA;
 
 int main(void){
     int n;
@@ -30,7 +30,7 @@ int main(void){
         scanf("%d", &n);
     }while(n < 1 || n >= 16);
     
-    struct itTvrtka programeri[15];
+    IT_TVRTKA programeri[15];
     
     for(int i = 0; i < n; i++){
         printf("Unesite ime %d programera. \n", i + 1);
