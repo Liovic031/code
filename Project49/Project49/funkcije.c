@@ -5,7 +5,7 @@
 #include "funkcije.h"
 #include "struktura.h"
 
-int izbornik(const char* const ime) {
+void izbornik(void) {
 
 	printf("\t\t************************************\n\n");
 	printf("\t\tOdaberite jednu od ponudenih opcija: \n\n");
@@ -24,14 +24,41 @@ int izbornik(const char* const ime) {
 
 	switch (uvijet) {
 	case 1:
+		igra();
 		break;
 	case 2:
+		leaderboard();
 		break;
 	case 3:
+		kraj();
 		break;
 	default:
 		uvijet = 0;
 	}
 	return uvijet;
+}
+
+
+int igra(void){}
+
+
+void kraj(void) {
+	char y = 121;
+	char n = 110;
+	char o;
+	printf("Zelite li izaci iz igre? y(da) ili n(ne)\n");
+	scanf("%c", &o);
+	if (o == n){
+		exit(EXIT_SUCCESS);
+	}
+	if(o == y){
+		system("cls");
+		izbornik();
+
+	}
+	else {
+		printf("Unesite 'y' ili 'n'\n");
+		kraj();
+	}
 }
 
