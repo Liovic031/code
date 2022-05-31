@@ -6,7 +6,9 @@
 
 
 int main(void) {
-
+	
+	izbornik();
+	
 	return 0;
 }
 
