@@ -6,8 +6,10 @@
 
 
 int main(void) {
-
-	izbornik();
-
+	
+	int uvijet = 1;
+	while (uvijet) {
+		uvijet = izbornik();
+	}
 	return 0;
-
+}
