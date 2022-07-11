@@ -2,15 +2,14 @@
 #define FUNKCIJE_H
 #include "struktura.h"
 
-void izbornik(void);
-int igra(void);
+int izbornik(void);
+void igra(void);
 void prikazVjesala(int choice);
 void kraj(void);
-//void upisuLeaderboard(int);
-//void leaderboard(void);
-//void zamjena(PLAYER*, PLAYER*);
-//void sortiranje(PLAYER*, const int);
-//void ispisLjestvice(PLAYER*, const int);
-//void povratakNaIzbornik(void);
-//void brojIgraca(void);
+void upisuLeaderboard(int poeni);
+void leaderboard(void);
+void zamjena(PLAYER* veci, PLAYER* manji);
+void sortiranje(PLAYER* igrac, const int k);
+void ispisLjestvice(PLAYER* igrac, const int k);
+void povratakNaIzbornik(void);
 #endif
