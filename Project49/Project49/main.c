@@ -9,6 +9,7 @@ int main(void) {
 	
 	int uvijet = 1;
 	while (uvijet) {
+		system("cls");
 		uvijet = izbornik();
 	}
 	return 0;
