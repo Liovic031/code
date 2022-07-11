@@ -5,7 +5,7 @@
 #include "funkcije.h"
 #include "struktura.h"
 
-void izbornik(void) {
+int izbornik(void) {
 
 	printf("\t\t************************************\n\n");
 	printf("\t\tOdaberite jednu od ponudenih opcija: \n\n");
@@ -19,34 +19,35 @@ void izbornik(void) {
 	printf("\t\t************************************\n\n");
 
 	int uvijet = 0;
+    int brojBodova = 0;
+        scanf("%d", &uvijet);
 
-	scanf("%d", &uvijet);
-
-	switch (uvijet) {
-	case 1:
-		igra();
-		break;
-	case 2:
-		leaderboard();
-		break;
-	case 3:
-		kraj();
-		break;
-	default:
-		uvijet = 0;
-	}
-	return uvijet;
+        switch (uvijet) {
+        case 1:
+            igra();
+            break;
+        case 2:
+            leaderboard();
+            break;
+        case 3:
+            kraj();
+            break;
+        default:
+            uvijet = 1;  
+        }
+       
+        return uvijet;
 }
 
 
-int igra(void) {
+void igra(void) {
     char rijec[50];
     char pomocniString[50];
     int duljina, k, pogodak;
     int zivot = 5;
     char slovo;
     int brPogodjenih = 0;
-    int bodovi = 0;
+    int poeni = 0;
     int temp = zivot;
 
 
@@ -93,7 +94,7 @@ int igra(void) {
         if (pogodak == 1) {
             prikazVjesala(zivot);
             printf("\nTocno pogodjeno! \n %s\n", pomocniString);
-            bodovi = bodovi + 35;
+            poeni = poeni + 35;
         }
         else if (pogodak == 0) {
             zivot--;
@@ -105,7 +106,7 @@ int igra(void) {
         if (brPogodjenih == duljina) {
             printf("Cestitke na pobjedi!\n");
             temp = 0;
-            //upisuLeaderboard(bodovi);
+            upisuLeaderboard(poeni);
         }
 
     }
@@ -118,10 +119,9 @@ int igra(void) {
         printf("\n\t|   / %c", '\\');
         printf("\n\t|     ");
         printf("\n Nazalost ste izgubili, rijec je bila: %s\n", rijec);
-        //upisuLeaderboard(bodovi);
+        upisuLeaderboard(poeni);
     }
-    printf("Bodovi: %d", bodovi);
-    return bodovi;
+    
 }
 
 void prikazVjesala(int zivot)                          
@@ -173,7 +173,6 @@ void prikazVjesala(int zivot)
         printf("\n\t|      ");
     }
     
-    return;
 }
 
 void kraj(void) {
@@ -196,31 +195,97 @@ void kraj(void) {
 		kraj();
     }
 		
-	
 }
 
 
 
-//void upisuLeaderboard(int) {}
-
-
-
-
-//void leaderboard(void);
-
-
-
-
-
-
-/*void zamjena(PLAYER*, PLAYER*) {
-   
-    PLAYER temp = *manji;
-    *manji = *veci;
-    *veci = temp;
+void upisuLeaderboard(int b) {
+     FILE* Test = NULL;
+     Test = fopen("Ljestvica.bin", "rb");                    
+     if (Test == NULL)
+     {
+           fflush(Test);
+           Test = fopen("Ljestvica.bin", "wb");               
+           int Broj = 0;
+           fwrite(&Broj, sizeof(int), 1, Test);
+     }
+     fclose(Test);
+     PLAYER* igrac = NULL;
+     igrac = (PLAYER*)calloc(1, sizeof(PLAYER));
+     FILE* fp = NULL;
+     fp = fopen("Ljestvica.bin", "rb+");
+     if (fp == NULL)
+     {
+            perror("Otvaranje");
+     }
+     else
+     {
+            int x = 0;
+            fread(&x, sizeof(int), 1, fp);
+            x++;
+            fseek(fp, 0, SEEK_SET);
+            fwrite(&x, sizeof(int), 1, fp);
+            fseek(fp, 0, SEEK_END);
+            printf("Osvojeni bodovi: %d\n", b);
+            printf("Unesite vase ime: ");
+            scanf(" %[^\n]%*c", igrac->ime);
+            igrac->bodovi = b;
+            fwrite(igrac, sizeof(PLAYER), 1, fp);
+            system("cls");
+     }
+     fclose(fp);
+     return;
 }
 
-//void sortiranje(PLAYER*, const int){
+void povratakNaIzbornik(void){
+
+    while ((getchar()) != '\n');
+    int p = 0;
+    printf("\nPritisnite broj 1 za povratak u izbornik  ");
+    scanf("%d", &p);
+    if (p == 1)
+    {
+        system("cls");
+        izbornik();
+    }
+    else
+    {
+        system("cls");
+        printf("\nPogresan unos, pokusajte ponovno\n\n");
+        povratakNaIzbornik();
+    }
+}
+
+
+void leaderboard(void){
+    system("cls");
+	FILE* fp = NULL;
+	fp = fopen("Ljestvica.bin", "rb+");
+	if (fp == NULL)
+	{
+		perror("Error");
+		printf("Nema upisanih igraca");                 //ako pokusamo otvoriti ljestvicu dok nema upisanih igraca dobit cemo poruku da trenutacno nema igraca i vratit ce nas u izbornik
+		povratakNaIzbornik();
+	}
+	else
+	{
+		int k = 0;
+		fread(&k, sizeof(int), 1, fp);
+		PLAYER* igrac = NULL;
+		igrac = (PLAYER*)calloc(k, sizeof(PLAYER));
+		fread(igrac, sizeof(PLAYER), k, fp);
+		
+		
+        system("cls");
+        sortiranje(igrac, k);
+        ispisLjestvice(igrac, k);
+        povratakNaIzbornik();
+	}
+}
+
+
+
+void sortiranje(PLAYER* igrac, const int k) {
     int min = 0;
     for (int i = 0; i < k - 1; i++)
     {
@@ -232,12 +297,19 @@ void kraj(void) {
                 min = j;
             }
         }
-        Zamjena((igrac + i), (igrac + min));
+        zamjena((igrac + i), (igrac + min));
     }
 }
 
 
-//void ispisLjestvice(PLAYER*, const int){
+void zamjena(PLAYER* veci, PLAYER* manji){
+   
+    PLAYER temp = *manji;
+    *manji = *veci;
+    *veci = temp;
+}
+
+void ispisLjestvice(PLAYER* igrac, const int k){
     int i;
 
     for (i = 0; i < k; i++){
@@ -245,8 +317,3 @@ void kraj(void) {
     }
 
 }
-
-//void povratakNaIzbornik(void);
-//void brojIgraca(void);
-
-*/
