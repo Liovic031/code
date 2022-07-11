@@ -57,7 +57,6 @@ void igra(void) {
 
     for (int i = 0; i < duljina; i++) {
         pomocniString[i] = '_';
-        //printf("%c\n", pomoc[i]);
         k = i;
     }
 
@@ -65,10 +64,8 @@ void igra(void) {
    
     system("cls");
 
-    //printf("%s\n", pomocniString);
-    
  
-    printf("\n\t|_____ ");
+    printf("\n\t______ ");
     printf("\n\t|    | ");
     printf("\n\t|    O ");
     printf("\n\t|      ");
@@ -82,11 +79,10 @@ void igra(void) {
         printf("\nPogodi slovo!\n");
         getchar();
         scanf("%c", &slovo);
-        // getchar();
+       
         for (int i = 0; i < duljina; i++) {
             if (rijec[i] == slovo) {
                 pomocniString[i] = rijec[i];
-                //printf("Nakon promjene %s\n", pomocniString);
                 brPogodjenih++;
                 pogodak = 1;
             }
@@ -112,7 +108,7 @@ void igra(void) {
     }
     if (zivot == 0) {
         system("cls");
-        printf("\n\t|_____ ");
+        printf("\n\t______ ");
         printf("\n\t|    | ");
         printf("\n\t|   %cO/", '\\');
         printf("\n\t|    | ");
@@ -129,7 +125,7 @@ void prikazVjesala(int zivot)
 
     if (zivot == 1) {
         system("cls");
-        printf("\n\t|_____ ");
+        printf("\n\t______ ");
         printf("\n\t|    | ");
         printf("\n\t|   %cO/", '\\');
         printf("\n\t|    | ");
@@ -138,7 +134,7 @@ void prikazVjesala(int zivot)
     }
     if (zivot == 2) {
         system("cls");
-        printf("\n\t|_____ ");
+        printf("\n\t______ ");
         printf("\n\t|    | ");
         printf("\n\t|   %cO/", '\\');
         printf("\n\t|    | ");
@@ -147,7 +143,7 @@ void prikazVjesala(int zivot)
     }
     if (zivot == 3) {
         system("cls");
-        printf("\n\t|_____ ");
+        printf("\n\t______ ");
         printf("\n\t|    | ");
         printf("\n\t|   %cO/", '\\');
         printf("\n\t|      ");
@@ -156,7 +152,7 @@ void prikazVjesala(int zivot)
     }
     if (zivot == 4) {
         system("cls");
-        printf("\n\t|_____ ");
+        printf("\n\t______ ");
         printf("\n\t|    | ");
         printf("\n\t|   %cO ", '\\');
         printf("\n\t|      ");
@@ -165,7 +161,7 @@ void prikazVjesala(int zivot)
     }
     if (zivot == 5) {
         system("cls");
-        printf("\n\t|_____ ");
+        printf("\n\t______ ");
         printf("\n\t|    | ");
         printf("\n\t|    O ");
         printf("\n\t|      ");
@@ -240,10 +236,11 @@ void upisuLeaderboard(int b) {
 void povratakNaIzbornik(void){
 
     while ((getchar()) != '\n');
-    int p = 0;
-    printf("\nPritisnite broj 1 za povratak u izbornik  ");
-    scanf("%d", &p);
-    if (p == 1)
+    char i = 105;
+    char x;
+    printf("\nUnesite i za povratak na izbornik  ");
+    scanf("%c", &x);
+    if (x == i)
     {
         system("cls");
         izbornik();
@@ -269,28 +266,28 @@ void leaderboard(void){
 	}
 	else
 	{
-		int k = 0;
-		fread(&k, sizeof(int), 1, fp);
+		int y = 0;
+		fread(&y, sizeof(int), 1, fp);
 		PLAYER* igrac = NULL;
-		igrac = (PLAYER*)calloc(k, sizeof(PLAYER));
-		fread(igrac, sizeof(PLAYER), k, fp);
+		igrac = (PLAYER*)calloc(y, sizeof(PLAYER));
+		fread(igrac, sizeof(PLAYER), y, fp);
 		
 		
         system("cls");
-        sortiranje(igrac, k);
-        ispisLjestvice(igrac, k);
+        sortiranje(igrac, y);
+        ispisLjestvice(igrac, y);
         povratakNaIzbornik();
 	}
 }
 
 
 
-void sortiranje(PLAYER* igrac, const int k) {
+void sortiranje(PLAYER* igrac, const int y) {
     int min = 0;
-    for (int i = 0; i < k - 1; i++)
+    for (int i = 0; i < y - 1; i++)
     {
         min = i;
-        for (int j = i + 1; j < k; j++)
+        for (int j = i + 1; j < y; j++)
         {
             if ((igrac + j)->bodovi > (igrac + min)->bodovi)
             {
@@ -302,17 +299,17 @@ void sortiranje(PLAYER* igrac, const int k) {
 }
 
 
-void zamjena(PLAYER* veci, PLAYER* manji){
+void zamjena(PLAYER* v, PLAYER* m){
    
-    PLAYER temp = *manji;
-    *manji = *veci;
-    *veci = temp;
+    PLAYER pomocni = *m;
+    *m = *v;
+    *v = pomocni;
 }
 
-void ispisLjestvice(PLAYER* igrac, const int k){
+void ispisLjestvice(PLAYER* igrac, const int y){
     int i;
 
-    for (i = 0; i < k; i++){
+    for (i = 0; i < y; i++){
     printf("\n%d. Ime: %s   Bodovi: %d\n", (i + 1), (igrac + i)->ime, (igrac + i)->bodovi);
     }
 
