@@ -196,16 +196,16 @@ void kraj(void) {
 
 
 void upisuLeaderboard(int b) {
-     FILE* Test = NULL;
-     Test = fopen("Ljestvica.bin", "rb");                    
-     if (Test == NULL)
+     FILE* p = NULL;
+     p = fopen("Ljestvica.bin", "rb");                    
+     if (p == NULL)
      {
-           fflush(Test);
-           Test = fopen("Ljestvica.bin", "wb");               
+           fflush(p);
+           p = fopen("Ljestvica.bin", "wb");               
            int Broj = 0;
-           fwrite(&Broj, sizeof(int), 1, Test);
+           fwrite(&Broj, sizeof(int), 1, p);
      }
-     fclose(Test);
+     fclose(p);
      PLAYER* igrac = NULL;
      igrac = (PLAYER*)calloc(1, sizeof(PLAYER));
      FILE* fp = NULL;
