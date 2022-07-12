@@ -261,7 +261,7 @@ void leaderboard(void){
 	if (fp == NULL)
 	{
 		perror("Error");
-		printf("Nema upisanih igraca");                 //ako pokusamo otvoriti ljestvicu dok nema upisanih igraca dobit cemo poruku da trenutacno nema igraca i vratit ce nas u izbornik
+		printf("U datoteci nema igraca");               
 		povratakNaIzbornik();
 	}
 	else
@@ -310,7 +310,7 @@ void ispisLjestvice(PLAYER* igrac, const int y){
     int i;
 
     for (i = 0; i < y; i++){
-    printf("\n%d. Ime: %s   Bodovi: %d\n", (i + 1), (igrac + i)->ime, (igrac + i)->bodovi);
+    printf("\n%d. Igrac: %s   Bodovi: %d\n", (i + 1), (igrac + i)->ime, (igrac + i)->bodovi);
     }
 
 }
