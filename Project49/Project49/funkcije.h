@@ -8,8 +8,8 @@ void prikazVjesala(int choice);
 void kraj(void);
 void upisuLeaderboard(int poeni);
 void leaderboard(void);
-void zamjena(PLAYER* veci, PLAYER* manji);
-void sortiranje(PLAYER* igrac, const int k);
-void ispisLjestvice(PLAYER* igrac, const int k);
+void zamjena(PLAYER* v, PLAYER* m);
+void sortiranje(PLAYER* igrac, const int y);
+void ispisLjestvice(PLAYER* igrac, const int y);
 void povratakNaIzbornik(void);
 #endif
