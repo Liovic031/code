@@ -1,0 +1,79 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        /* zadatak 1*/
+        System.out.println("   J   a  v     v  a ");
+        System.out.println("   J  a a  v   v  a a");
+        System.out.println("J  J aaaaa  V V  aaaaa");
+        System.out.println(" JJ  a   a   V   a   a ");
+
+        /* zadatak 2*/
+
+        System.out.println("Hello");
+        System.out.println("Fran Liovic");
+
+        /*zadatak 3*/
+        int prvibr = 74;
+        int drugibr = 36;
+        int suma = 0;
+
+        suma = prvibr + drugibr;
+
+        System.out.println(suma);
+
+        /*zadatak 4*/
+
+        int prvibroj = 50;
+        int drugibroj = 3;
+        int rez = 0;
+
+        rez = prvibroj / drugibroj;
+
+        System.out.println(rez);
+
+        /*zadatak 5*/
+
+        int firstnumb;
+        int secondnumb;
+        int rezultat;
+
+       Scanner input = new Scanner(System.in);
+        firstnumb = input.nextInt();
+        secondnumb = input.nextInt();
+
+        rezultat = firstnumb * secondnumb;
+        System.out.println(rezultat);
+
+        /*zadatak6*/
+
+        int pn;
+        int sn;
+        int rz1;
+        int rz2;
+        int rz3;
+        int rz4;
+        int rz5;
+
+        pn = input.nextInt();
+        sn = input.nextInt();
+
+        rz1 = pn + sn;
+        rz2 = pn - sn;
+        rz3 = pn * sn;
+        rz4 = pn / sn;
+        rz5 = pn % sn;
+        System.out.println(rz1);
+        System.out.println(rz2);
+        System.out.println(rz3);
+        System.out.println(rz4);
+        System.out.println(rz5);
+
+    }
+
+
+
+
+}
